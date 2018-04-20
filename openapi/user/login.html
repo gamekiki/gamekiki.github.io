@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>GAMEKIKI# Developers | OPEN API - user - login </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"OPEN API - user - login","path":"openapi/user/login.html"},"data":{"navigation":{"logo":{"text":"GAMEKIKI# Developers","type":"link","path":"index.html"},"main":[{"text":"INTRODUCTION","type":"label"},{"text":"GAMEKIKI#","type":"link","path":"index.html"},{"text":"PLUGIN","type":"label"},{"text":"Client Module","type":"link","path":"clientmodule.html"},{"text":"OPEN API","type":"label"},{"text":"OPEN API","type":"link","path":"openapi/openapi.html"},{"text":"user","type":"link","path":"openapi/user.html","children":[{"text":"feed","type":"link","path":"openapi/user/feed.html"},{"text":"profile","type":"link","path":"openapi/user/profile.html"},{"text":"updateProfile","type":"link","path":"openapi/user/updateProfile.html"},{"text":"toplist","type":"link","path":"openapi/user/toplist.html"},{"text":"activity","type":"link","path":"openapi/user/activity.html"},{"text":"rewardList","type":"link","path":"openapi/user/rewardList.html"},{"text":"login","type":"link","path":"openapi/user/login.html"},{"text":"logout","type":"link","path":"openapi/user/logout.html"},{"text":"userLevel","type":"link","path":"openapi/user/userLevel.html"},{"text":"achievement","type":"link","path":"openapi/user/achievement.html"},{"text":"pointList","type":"link","path":"openapi/user/pointList.html"}]},{"text":"social","type":"link","path":"openapi/social.html","children":[{"text":"reqfriendlist","type":"link","path":"openapi/social/reqfriendlist.html"},{"text":"srcfriend","type":"link","path":"openapi/social/srcfriend.html"},{"text":"friendlist","type":"link","path":"openapi/social/friendlist.html"},{"text":"sugfriend","type":"link","path":"openapi/social/sugfriend.html"},{"text":"procreqfriend","type":"link","path":"openapi/social/procreqfriend.html"},{"text":"reqfriend","type":"link","path":"openapi/social/reqfriend.html"}]},{"text":"minigame","type":"link","path":"openapi/minigame.html","children":[{"text":"pickrwd","type":"link","path":"openapi/minigame/pickrwd.html"},{"text":"tracklog","type":"link","path":"openapi/minigame/tracklog.html"}]},{"text":"suggest","type":"link","path":"openapi/suggest.html","children":[{"text":"userlog","type":"link","path":"openapi/suggest/userlog.html"},{"text":"sproduct","type":"link","path":"openapi/suggest/sproduct.html"},{"text":"uproduct","type":"link","path":"openapi/suggest/uproduct.html"},{"text":"sugprod","type":"link","path":"openapi/suggest/sugprod.html"}]}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">GAMEKIKI# Developers</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1 id="login"><a href="#login" class="headerlink" title="login"></a>login</h1><hr>
+<p>사용자 로그인을 처리합니다.</p>
+<h2 id="Parameter"><a href="#Parameter" class="headerlink" title="Parameter"></a><strong>Parameter</strong></h2><p>다음의 URL을 통해 접근 가능합니다.<br><strong>HTTP POST</strong> <code>http://www.gamekiki.com:3000/login</code></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appId</td>
+<td>app_Bx8BoU1g00000</td>
+<td>Required</td>
+<td>Application ID (CMS에서 확인 가능)</td>
+</tr>
+<tr>
+<td>secretKey</td>
+<td>456951cb56f161215d6147083b03970c0f…..</td>
+<td>Required</td>
+<td>Application Secret Key (CMS에서 확인 가능)</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>test</td>
+<td>Required</td>
+<td>로그인한 사용자의 user ID</td>
+</tr>
+<tr>
+<td>loginType</td>
+<td>P</td>
+<td>Optional</td>
+<td>유입경로, A:android / I:iOS / P:PC / E:eMail / F:facebook/ K:kakao</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a><strong>Example</strong></h2><p>보내는 메시지는 아래와 같습니다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"appId"</span>: <span class="string">"app_Bx8BoU1g00000"</span>,</span><br><span class="line">    <span class="attr">"secretKey"</span>: <span class="string">"456951cb56f161215d6147083b03970c0f....."</span>,</span><br><span class="line">    <span class="attr">"userId"</span>: <span class="string">"test"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a><strong>Response</strong></h2><p>받는 값은 아래와 같습니다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"message"</span>: <span class="string">"succeed to login."</span>,</span><br><span class="line">    <span class="attr">"token"</span>: <span class="string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.ey....."</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>
