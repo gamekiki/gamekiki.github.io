@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>GAMEKIKI# Developers | Plugin - Activity </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"Plugin - Activity","path":"plugin/activity.html"},"data":{"navigation":{"logo":{"text":"GAMEKIKI# Developers","type":"link","path":"index.html"},"main":[{"text":"INTRODUCTION","type":"label"},{"text":"GAMEKIKI#","type":"link","path":"index.html"},{"text":"PLUGIN","type":"label"},{"text":"Client Module","type":"link","path":"plugin.html","children":[{"text":"PHP","type":"link","path":"plugin/php.html"},{"text":"ASP","type":"link","path":"plugin/asp.html"},{"text":"React","type":"link","path":"plugin/react.html"},{"text":"Activity","type":"link","path":"plugin/activity.html"}]},{"text":"OPEN API","type":"label"},{"text":"OPEN API","type":"link","path":"openapi.html"},{"text":"user","type":"link","path":"openapi/user.html","children":[{"text":"feed","type":"link","path":"openapi/user/feed.html"},{"text":"profile","type":"link","path":"openapi/user/profile.html"},{"text":"updateProfile","type":"link","path":"openapi/user/updateProfile.html"},{"text":"toplist","type":"link","path":"openapi/user/toplist.html"},{"text":"activity","type":"link","path":"openapi/user/activity.html"},{"text":"rewardList","type":"link","path":"openapi/user/rewardList.html"},{"text":"login","type":"link","path":"openapi/user/login.html"},{"text":"logout","type":"link","path":"openapi/user/logout.html"},{"text":"userLevel","type":"link","path":"openapi/user/userLevel.html"},{"text":"achievement","type":"link","path":"openapi/user/achievement.html"},{"text":"pointList","type":"link","path":"openapi/user/pointList.html"}]},{"text":"social","type":"link","path":"openapi/social.html","children":[{"text":"reqfriendlist","type":"link","path":"openapi/social/reqfriendlist.html"},{"text":"srcfriend","type":"link","path":"openapi/social/srcfriend.html"},{"text":"friendlist","type":"link","path":"openapi/social/friendlist.html"},{"text":"sugfriend","type":"link","path":"openapi/social/sugfriend.html"},{"text":"procreqfriend","type":"link","path":"openapi/social/procreqfriend.html"},{"text":"reqfriend","type":"link","path":"openapi/social/reqfriend.html"}]},{"text":"minigame","type":"link","path":"openapi/minigame.html","children":[{"text":"pickrwd","type":"link","path":"openapi/minigame/pickrwd.html"},{"text":"tracklog","type":"link","path":"openapi/minigame/tracklog.html"}]},{"text":"suggest","type":"link","path":"openapi/suggest.html","children":[{"text":"userlog","type":"link","path":"openapi/suggest/userlog.html"},{"text":"sproduct","type":"link","path":"openapi/suggest/sproduct.html"},{"text":"uproduct","type":"link","path":"openapi/suggest/uproduct.html"},{"text":"sugprod","type":"link","path":"openapi/suggest/sugprod.html"}]}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">GAMEKIKI# Developers</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><hr>
+<p>Activity 사용 가이드입니다.</p>
+<h2 id="엑티비티-전송"><a href="#엑티비티-전송" class="headerlink" title="엑티비티 전송"></a>엑티비티 전송</h2><hr>
+<ol>
+<li><p>엑티비티 생성</p>
+<ul>
+<li>엑티비티 생성은 <a href="#">엑티비티 생성</a> 페이지를 참조하시기 바랍니다.</li>
+</ul>
+</li>
+<li><p>프레임워크에 따른 엑티비티 전송</p>
+<ul>
+<li>엑티비티 전송은 <a href="php.html#로그인연동">로그인 연동</a>이 필요한 서비스입니다.</li>
+<li>사용하시는 프레임워크에 따라서 아래의 코드를 따라하시면 엑티비티가 전송됩니다.</li>
+</ul>
+</li>
+</ol>
+<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kshopMds.sendAction(&#123;</span><br><span class="line">    userId : userId,</span><br><span class="line">    actId : actId,</span><br><span class="line">    callback : <span class="function"><span class="keyword">function</span>(<span class="params">okFlag, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"got callback"</span>,okFlag, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Required-parameters"><a href="#Required-parameters" class="headerlink" title="Required parameters"></a>Required parameters</h3><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>“test”</td>
+<td>Required</td>
+<td>사용자의 id </td>
+</tr>
+<tr>
+<td>actId</td>
+<td>“act_d5uIYquz00000”</td>
+<td>Required</td>
+<td>전송하고자 하는 activity의 id</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function(okFlag,res){}</td>
+<td>Optional</td>
+<td>엑티비티 전송이후 실행되는 callback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>okFlag</td>
+<td>boolean</td>
+<td>엑티비티 전송 성공 여부 </td>
+</tr>
+<tr>
+<td>res</td>
+<td>object</td>
+<td>엑티비티 전송이후 넘어오는 데이터 값 </td>
+</tr>
+</tbody>
+</table>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"kikiClass.php"</span>);</span><br><span class="line">$userId=<span class="string">"test"</span>;</span><br><span class="line">$actId=<span class="string">"act_fNLq2ugj00000"</span>;</span><br><span class="line">$kiki = <span class="keyword">new</span> kikiClass();</span><br><span class="line">$actRst = $kiki-&gt;sendAction($userId,$actId);</span><br><span class="line"><span class="keyword">if</span>($actRst[<span class="string">"prog"</span>] == <span class="keyword">true</span>)&#123;</span><br><span class="line">    <span class="comment">// 액션 성공</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// 액션 실패</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Required-parameters-1"><a href="#Required-parameters-1" class="headerlink" title="Required parameters"></a>Required parameters</h3><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>“test”</td>
+<td>Required</td>
+<td>사용자의 id </td>
+</tr>
+<tr>
+<td>actId</td>
+<td>“act_d5uIYquz00000”</td>
+<td>Required</td>
+<td>전송하고자 하는 activity의 id</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function(okFlag,res){}</td>
+<td>Optional</td>
+<td>엑티비티 전송이후 실행되는 callback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Response-1"><a href="#Response-1" class="headerlink" title="Response"></a>Response</h3><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prog</td>
+<td>boolean</td>
+<td>엑티비티 전송 성공 여부 </td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>현재 토큰값 </td>
+</tr>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>전송 결과 메세지</td>
+</tr>
+<tr>
+<td>updatedToken</td>
+<td>string</td>
+<td>현재토큰 업데이트 여부</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ASP"><a href="#ASP" class="headerlink" title="ASP"></a>ASP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Dim userId, appId, appSecret,mgId,kiki,token</span><br><span class="line">userId = &quot;test&quot;</span><br><span class="line">appId = &quot;app_L6l71RIp00000&quot;</span><br><span class="line">actId=&quot;act_D93CvkiM00000&quot;</span><br><span class="line"></span><br><span class="line">Set kiki = new kikiClass</span><br><span class="line">token =kiki.token;</span><br><span class="line">kiki.sendAction appId, userId, token,actId</span><br></pre></td></tr></table></figure>
+<h3 id="Required-parameters-2"><a href="#Required-parameters-2" class="headerlink" title="Required parameters"></a>Required parameters</h3><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>“app_L6l71RIp00000”</td>
+<td>Required</td>
+<td>어플리케이션 id </td>
+</tr>
+<tr>
+<td>userId</td>
+<td>“test”</td>
+<td>Required</td>
+<td>사용자의 id </td>
+</tr>
+<tr>
+<td>token</td>
+<td>“eyJhcHBJZCI6ImFwcF9OV01”</td>
+<td>Required</td>
+<td>로그인 이후 발급된 토큰</td>
+</tr>
+<tr>
+<td>actId</td>
+<td>“act_d5uIYquz00000”</td>
+<td>Required</td>
+<td>전송하고자 하는 activity의 id</td>
+</tr>
+</tbody>
+</table>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>

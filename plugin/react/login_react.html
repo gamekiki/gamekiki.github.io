@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>GAMEKIKI# Developers |  </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"path":"plugin/react/login_react.html","title":""},"data":{"navigation":{"logo":{"text":"GAMEKIKI# Developers","type":"link","path":"index.html"},"main":[{"text":"INTRODUCTION","type":"label"},{"text":"GAMEKIKI#","type":"link","path":"index.html"},{"text":"PLUGIN","type":"label"},{"text":"Client Module","type":"link","path":"plugin.html","children":[{"text":"PHP","type":"link","path":"plugin/php.html"},{"text":"ASP","type":"link","path":"plugin/asp.html"},{"text":"React","type":"link","path":"plugin/react.html"},{"text":"Activity","type":"link","path":"plugin/activity.html"}]},{"text":"OPEN API","type":"label"},{"text":"OPEN API","type":"link","path":"openapi.html"},{"text":"user","type":"link","path":"openapi/user.html","children":[{"text":"feed","type":"link","path":"openapi/user/feed.html"},{"text":"profile","type":"link","path":"openapi/user/profile.html"},{"text":"updateProfile","type":"link","path":"openapi/user/updateProfile.html"},{"text":"toplist","type":"link","path":"openapi/user/toplist.html"},{"text":"activity","type":"link","path":"openapi/user/activity.html"},{"text":"rewardList","type":"link","path":"openapi/user/rewardList.html"},{"text":"login","type":"link","path":"openapi/user/login.html"},{"text":"logout","type":"link","path":"openapi/user/logout.html"},{"text":"userLevel","type":"link","path":"openapi/user/userLevel.html"},{"text":"achievement","type":"link","path":"openapi/user/achievement.html"},{"text":"pointList","type":"link","path":"openapi/user/pointList.html"}]},{"text":"social","type":"link","path":"openapi/social.html","children":[{"text":"reqfriendlist","type":"link","path":"openapi/social/reqfriendlist.html"},{"text":"srcfriend","type":"link","path":"openapi/social/srcfriend.html"},{"text":"friendlist","type":"link","path":"openapi/social/friendlist.html"},{"text":"sugfriend","type":"link","path":"openapi/social/sugfriend.html"},{"text":"procreqfriend","type":"link","path":"openapi/social/procreqfriend.html"},{"text":"reqfriend","type":"link","path":"openapi/social/reqfriend.html"}]},{"text":"minigame","type":"link","path":"openapi/minigame.html","children":[{"text":"pickrwd","type":"link","path":"openapi/minigame/pickrwd.html"},{"text":"tracklog","type":"link","path":"openapi/minigame/tracklog.html"}]},{"text":"suggest","type":"link","path":"openapi/suggest.html","children":[{"text":"userlog","type":"link","path":"openapi/suggest/userlog.html"},{"text":"sproduct","type":"link","path":"openapi/suggest/sproduct.html"},{"text":"uproduct","type":"link","path":"openapi/suggest/uproduct.html"},{"text":"sugprod","type":"link","path":"openapi/suggest/sugprod.html"}]}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">GAMEKIKI# Developers</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <p></p><h1>로그인 연동</h1><br><a name="section_1_1"></a><p></p>
+<h2>1. <a href="start_react.md#sector_1_5">시작하기 </a>에서 했던 KikiDiv 세팅을 로그인 페이지에도 똑같이 해줍니다.</h2><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mainpage</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;    </span><br><span class="line"> <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">     <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  kikiCallback = <span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;   </span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;main page&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &lt;KikiDiv </span></span><br><span class="line"><span class="regexp">            ref=&#123;this.child&#125; </span></span><br><span class="line"><span class="regexp">            appId="app_a7suAtYd00000" </span></span><br><span class="line"><span class="regexp">            userId="test" </span></span><br><span class="line"><span class="regexp">            mgId="MGMAI_D5w38188" </span></span><br><span class="line"><span class="regexp">            appSecret="7e6dd75adb0c2d16cb1a0451****************"</span></span><br><span class="line"><span class="regexp">            kikiCallback = &#123;this.kikiCallback&#125;</span></span><br><span class="line"><span class="regexp">        /</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default mainpage;</span></span><br></pre></td></tr></table></figure><br><br><h2>2. kikiCallback 함수에서 KikiDiv의 로그인 함수를 호출합니다.</h2>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kikiCallback = <span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">	<span class="keyword">this</span>.child.current.login(&#123;</span><br><span class="line">		callback : <span class="function"><span class="keyword">function</span>(<span class="params">okFlag, res</span>)</span>&#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><b>Login Response</b></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>okFlag</td>
+<td>boolean</td>
+<td>로그인 성공여부 <br>true=로그인 성공 <br>false= 로그인 실패</td>
+</tr>
+<tr>
+<td>res</td>
+<td>object</td>
+<td>로그인 호출이후 키키서버로부터 받은 response 값</td>
+</tr>
+</tbody>
+</table>
+<h2>3. 로그인 성공여부를 체크해서 성공 시 메인페이지로 이동합니다.</h2>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">kikiCallback = <span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">	<span class="keyword">this</span>.child.current.login(&#123;</span><br><span class="line">		callback : <span class="function"><span class="keyword">function</span>(<span class="params">okFlag, res</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(okFlag)&#123;</span><br><span class="line">				<span class="built_in">window</span>.location.href=<span class="string">"mainpage"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>
