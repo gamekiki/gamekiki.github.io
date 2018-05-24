@@ -36,19 +36,18 @@
 <p>Activity 사용 가이드입니다.</p>
 <h2 id="엑티비티-전송"><a href="#엑티비티-전송" class="headerlink" title="엑티비티 전송"></a>엑티비티 전송</h2><hr>
 <ol>
-<li><p>엑티비티 생성</p>
-<ul>
-<li>엑티비티 생성은 <a href="#">엑티비티 생성</a> 페이지를 참조하시기 바랍니다.</li>
+<li>엑티비티 생성<ul>
+<li>엑티비티 생성은 <a href="https://www.gamekiki.com/cms/activity.php" target="_blank" rel="noopener">엑티비티 생성</a> 페이지를 참조하시기 바랍니다.</li>
 </ul>
 </li>
-<li><p>프레임워크에 따른 엑티비티 전송</p>
-<ul>
+<li>개발환경에 따른 엑티비티 전송<ul>
 <li>엑티비티 전송은 <a href="php.html#로그인연동">로그인 연동</a>이 필요한 서비스입니다.</li>
-<li>사용하시는 프레임워크에 따라서 아래의 코드를 따라하시면 엑티비티가 전송됩니다.</li>
+<li>개발환경에 따라서 아래의 코드를 작성하시면 엑티비티가 전송됩니다.</li>
 </ul>
 </li>
 </ol>
-<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kshopMds.sendAction(&#123;</span><br><span class="line">    userId : userId,</span><br><span class="line">    actId : actId,</span><br><span class="line">    callback : <span class="function"><span class="keyword">function</span>(<span class="params">okFlag, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"got callback"</span>,okFlag, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h2><hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kshopMds.sendAction(&#123;</span><br><span class="line">    userId : userId,</span><br><span class="line">    actId : actId,</span><br><span class="line">    callback : <span class="function"><span class="keyword">function</span>(<span class="params">okFlag, res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"got callback"</span>, okFlag, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h3 id="Required-parameters"><a href="#Required-parameters" class="headerlink" title="Required parameters"></a>Required parameters</h3><table>
 <thead>
 <tr>
@@ -100,7 +99,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">"kikiClass.php"</span>);</span><br><span class="line">$userId=<span class="string">"test"</span>;</span><br><span class="line">$actId=<span class="string">"act_fNLq2ugj00000"</span>;</span><br><span class="line">$kiki = <span class="keyword">new</span> kikiClass();</span><br><span class="line">$actRst = $kiki-&gt;sendAction($userId,$actId);</span><br><span class="line"><span class="keyword">if</span>($actRst[<span class="string">"prog"</span>] == <span class="keyword">true</span>)&#123;</span><br><span class="line">    <span class="comment">// 액션 성공</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// 액션 실패</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><hr>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">"kikiClass.php"</span>);</span><br><span class="line">    $userId = <span class="string">"test"</span>;</span><br><span class="line">    $actId = <span class="string">"act_fNLq2ugj00000"</span>;</span><br><span class="line">    $kiki = <span class="keyword">new</span> kikiClass();</span><br><span class="line">    $actRst = $kiki-&gt;sendAction($userId, $actId);</span><br><span class="line">    <span class="keyword">if</span>($actRst[<span class="string">"prog"</span>] == <span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="comment">// 액션 성공</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// 액션 실패</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="Required-parameters-1"><a href="#Required-parameters-1" class="headerlink" title="Required parameters"></a>Required parameters</h3><table>
 <thead>
 <tr>
@@ -122,12 +122,6 @@
 <td>“act_d5uIYquz00000”</td>
 <td>Required</td>
 <td>전송하고자 하는 activity의 id</td>
-</tr>
-<tr>
-<td>callback</td>
-<td>function(okFlag,res){}</td>
-<td>Optional</td>
-<td>엑티비티 전송이후 실행되는 callback</td>
 </tr>
 </tbody>
 </table>
@@ -162,7 +156,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="ASP"><a href="#ASP" class="headerlink" title="ASP"></a>ASP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Dim userId, appId, appSecret,kiki,token</span><br><span class="line">userId = &quot;test&quot;</span><br><span class="line">appId = &quot;app_L6l71RIp00000&quot;</span><br><span class="line">actId=&quot;act_D93CvkiM00000&quot;</span><br><span class="line"></span><br><span class="line">Set kiki = new kikiClass</span><br><span class="line">token =kiki.token;</span><br><span class="line">kiki.sendAction appId, userId, token,actId</span><br></pre></td></tr></table></figure>
+<h2 id="ASP"><a href="#ASP" class="headerlink" title="ASP"></a>ASP</h2><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Dim appId, actId, userId, kiki, token</span><br><span class="line">appId = &quot;app_L6l71RIp00000&quot;</span><br><span class="line">actId=&quot;act_D93CvkiM00000&quot;</span><br><span class="line">userId = &quot;test&quot;</span><br><span class="line"></span><br><span class="line">Set kiki = new kikiClass</span><br><span class="line">token = kiki.token;</span><br><span class="line">kiki.sendAction appId, actId, userId, token</span><br></pre></td></tr></table></figure>
 <h3 id="Required-parameters-2"><a href="#Required-parameters-2" class="headerlink" title="Required parameters"></a>Required parameters</h3><table>
 <thead>
 <tr>
@@ -174,10 +169,16 @@
 </thead>
 <tbody>
 <tr>
-<td>userId</td>
+<td>appId</td>
 <td>“app_L6l71RIp00000”</td>
 <td>Required</td>
 <td>어플리케이션 id </td>
+</tr>
+<tr>
+<td>actId</td>
+<td>“act_d5uIYquz00000”</td>
+<td>Required</td>
+<td>전송하고자 하는 activity의 id</td>
 </tr>
 <tr>
 <td>userId</td>
@@ -190,12 +191,6 @@
 <td>“eyJhcHBJZCI6ImFwcF9OV01”</td>
 <td>Required</td>
 <td>로그인 이후 발급된 토큰</td>
-</tr>
-<tr>
-<td>actId</td>
-<td>“act_d5uIYquz00000”</td>
-<td>Required</td>
-<td>전송하고자 하는 activity의 id</td>
 </tr>
 </tbody>
 </table>
