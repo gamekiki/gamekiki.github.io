@@ -72,27 +72,65 @@
 <li><p><code>KikiDiv</code>를 사용하여 아래와 같이 코드를 추가하여 줍니다.</p>
 <ol>
 <li><code>constructor()</code>에 <code>KikiDiv</code>를 참조할 참조변수를 생성</li>
-<li><code>render()</code>에 <code>KikiDiv</code>와 <code>attribute</code> 설정</li>
-<li><code>KikiDiv</code>에서 호출하는 <code>kikiCallback()</code> 작성</li>
-<li><code>kikiCallback()</code>에서 <code>KikiDiv.init</code> 함수를 로그인페이지 파라미터와 함께 호출<ul>
+<li><code>render()</code>에 <code>KikiDiv</code>와 <code>attribute</code> 설정  </li>
+<li><code>KikiDiv.init</code> 함수를 호출합니다.<ul>
 <li>로그인이 되어있다면 위젯 클릭 시 위젯이 정상적으로 작동</li>
-<li>로그인이 되어있지 않다면 위젯 클릭 시 로그인 페이지로 이동</li>
-<li>로그인 페이지 설정은 <a href="#로그인연동">로그인연동</a> 참고<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    kikiCallback = <span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">        <span class="keyword">var</span> loginPage = <span class="string">"./login"</span>;  </span><br><span class="line">        <span class="keyword">this</span>.child.current.init(<span class="literal">true</span>,loginPage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;   </span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;main page&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            &lt;KikiDiv </span></span><br><span class="line"><span class="regexp">                ref=&#123;this.child&#125; </span></span><br><span class="line"><span class="regexp">                appId="app_NWMUorVo00000" </span></span><br><span class="line"><span class="regexp">                userId="test" </span></span><br><span class="line"><span class="regexp">                appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"</span></span><br><span class="line"><span class="regexp">                kikiCallback = &#123;this.kikiCallback&#125;</span></span><br><span class="line"><span class="regexp">            /</span>&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default mainpage;</span></span><br></pre></td></tr></table></figure>
+<li>로그인이 되어있지 않다면 로그인 후 진행해주세요 라는 alert 작동</li>
+<li>로그인 페이지 설정은 <a href="#로그인연동">로그인연동</a> 참고<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   componentDidMount()&#123;</span><br><span class="line">       <span class="keyword">this</span>.child.current.init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;   </span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;main page&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            &lt;KikiDiv </span></span><br><span class="line"><span class="regexp">                ref=&#123;this.child&#125; </span></span><br><span class="line"><span class="regexp">                appId="app_NWMUorVo00000" </span></span><br><span class="line"><span class="regexp">                appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"</span></span><br><span class="line"><span class="regexp">            /</span>&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default mainpage;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
+</li>
+<li><p><code>loginpage</code> 파라미터를 사용하시면 로그인이 필요할 경우 자동으로 해당 페이지로 이동합니다 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount()&#123;</span><br><span class="line">    <span class="keyword">this</span>.child.current.init(&#123;</span><br><span class="line">        loginpage : <span class="string">"./login"</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>사이트 사용자의 세션 만료기간을 체크합니다.</p>
 <ul>
 <li>사이트 사용자의 로그인 세션과 키키 위젯 로그인 세션의 동기화를 위해서 사용자의 세션이 유지되는지 체크</li>
 <li>사용자 세션이 종료되었다면 키키위젯의 세션 또한 종료</li>
-<li>키키위젯의 세션을 종료하려면 <code>init</code>의 <code>loginCookie</code> 파라미터를 <code>false</code>로 설정하면 됩니다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    kikiCallback = <span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">        <span class="keyword">var</span> loginPage = <span class="string">"./login"</span>;  </span><br><span class="line">        <span class="comment">//서버에서 사용자의 로그인 세션값 </span></span><br><span class="line">        <span class="keyword">var</span> loginSession = svrLoginSession;</span><br><span class="line">        <span class="keyword">this</span>.child.current.init(loginSession,loginPage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;   </span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;main page&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            &lt;KikiDiv </span></span><br><span class="line"><span class="regexp">                ref=&#123;this.child&#125; </span></span><br><span class="line"><span class="regexp">                appId="app_NWMUorVo00000" </span></span><br><span class="line"><span class="regexp">                userId="test" </span></span><br><span class="line"><span class="regexp">                appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"</span></span><br><span class="line"><span class="regexp">                kikiCallback = &#123;this.kikiCallback&#125;</span></span><br><span class="line"><span class="regexp">            /</span>&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default mainpage;</span></span><br></pre></td></tr></table></figure>
+<li>키키위젯의 세션을 종료하려면 <code>init</code> 호출 시 <code>autoLogin</code> 파라미터를 N값으로 전달하시면 됩니다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     componentDidMount()&#123;  </span><br><span class="line">        <span class="comment">//서버에서 사용자의 로그인 세션값 </span></span><br><span class="line">        <span class="keyword">var</span> loginSession = svrLoginSession;</span><br><span class="line">        autoLoginValue = svrLoginSession? <span class="string">"Y"</span> : <span class="string">"N"</span>;</span><br><span class="line">        <span class="keyword">this</span>.child.current.init(&#123;</span><br><span class="line">            loginPage : <span class="string">"./login"</span>,</span><br><span class="line">            autoLogin : autoLoginValue</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;   </span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;main page&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">            &lt;KikiDiv </span></span><br><span class="line"><span class="regexp">                ref=&#123;this.child&#125; </span></span><br><span class="line"><span class="regexp">                appId="app_NWMUorVo00000" </span></span><br><span class="line"><span class="regexp">                appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"</span></span><br><span class="line"><span class="regexp">            /</span>&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default mainpage;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
-<h4 id="KikiDiv-컴포넌트-Attributes"><a href="#KikiDiv-컴포넌트-Attributes" class="headerlink" title="KikiDiv 컴포넌트 Attributes"></a>KikiDiv 컴포넌트 Attributes</h4><table>
+<h4 id="참고-KikiDiv-init-함수-option-파라미터"><a href="#참고-KikiDiv-init-함수-option-파라미터" class="headerlink" title="[참고] KikiDiv init 함수 option 파라미터"></a>[참고] KikiDiv init 함수 option 파라미터</h4><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+<th>Required</th>
+<th>Description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loginPage</td>
+<td>“login.html”</td>
+<td>optional</td>
+<td>로그인 페이지 옵션 값<br>해당 파라미터가 있으면 미로그인 사용자가 위젯 클릭 시 로그인 페이지로 이동</td>
+</tr>
+<tr>
+<td>autoLogin</td>
+<td>“N”</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>token</td>
+<td>“eyJ0eXAiOiJKV…”</td>
+<td>optional</td>
+<td><a href="#restAPI">rest API</a>를 통해 발급받은 토큰으로  <br>해당 토큰으로  위젯 사용을 원할 시, 필요한 파라미터. </td>
+</tr>
+<tr>
+<td>userId</td>
+<td>“user001”</td>
+<td>optional</td>
+<td>위의 토큰 파라미터와 매치되는 유저. <br> ex) REST API 에서 user001의 아이디로 토큰을 발급받았다면 ,<br> “user001” 로 현재 파라미터 설정</td>
+</tr>
+</tbody>
+</table>
+<h4 id="참고-KikiDiv-컴포넌트-Attributes"><a href="#참고-KikiDiv-컴포넌트-Attributes" class="headerlink" title="[참고] KikiDiv 컴포넌트 Attributes"></a>[참고] KikiDiv 컴포넌트 Attributes</h4><table>
 <thead>
 <tr>
 <th>Parameter</th>
@@ -120,21 +158,25 @@
 <td>Required</td>
 <td>app secret</td>
 </tr>
-<tr>
-<td>userId</td>
-<td>“test”</td>
-<td>Required</td>
-<td>사용자의 id </td>
-</tr>
-<tr>
-<td>kikiCallback</td>
-<td>{this.kikiCallback}</td>
-<td>Required</td>
-<td>컴포넌트 생성 이후 실행되는 callback</td>
-</tr>
 </tbody>
 </table>
-<h4 id="KikiDiv-init-함수-파라미터"><a href="#KikiDiv-init-함수-파라미터" class="headerlink" title="KikiDiv init 함수 파라미터"></a>KikiDiv init 함수 파라미터</h4><table>
+<h4 id="React-샘플파일-다운로드"><a href="#React-샘플파일-다운로드" class="headerlink" title="* React 샘플파일 다운로드"></a>* React 샘플파일 <a href="http://gamekiki.com/data/react_sample.zip" target="_blank" rel="noopener">다운로드</a></h4><h2 id="로그인연동"><a href="#로그인연동" class="headerlink" title="로그인연동"></a>로그인연동</h2><hr>
+<blockquote>
+<p>사용자 로그인 정보는 KikiDiv.login 함수를 사용하거나 <a href="#restAPI">REST API</a>를 직접 호출하는 것으로 연동할 수 있습니다.</p>
+</blockquote>
+<h3 id="KikiDiv-login을-통한-로그인-연동"><a href="#KikiDiv-login을-통한-로그인-연동" class="headerlink" title="KikiDiv.login을 통한 로그인 연동"></a>KikiDiv.login을 통한 로그인 연동</h3><ul>
+<li>아래의 순서에 따라 코드를 추가합니다.<ol>
+<li>kikiClass 파일을 다운로드 받은 후, 해당 압축파일 안에있는 <code>react/kikidiv.js</code>파일을 <code>login</code>처리를 하는 컴포넌트에 포함<ul>
+<li><code>kikiClass.zip</code> <a href="http://www.gamekiki.com/data/kikiClass.zip" target="_blank" rel="noopener">다운로드</a></li>
+</ul>
+</li>
+<li><code>KikiDiv.login</code> 함수를 <code>userId</code> 파라미터와 함께 호출</li>
+<li>(Optional) 로그인 성공여부를 체크해서 성공 시 메인페이지로 이동 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">loginForm</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;   </span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.handleSubmit = <span class="keyword">this</span>.handleSubmit.bind(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      userId: <span class="string">''</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    <span class="keyword">this</span>.child.current.login(&#123;</span><br><span class="line">        userId : <span class="keyword">this</span>.state.userId,</span><br><span class="line">        callback : <span class="function"><span class="keyword">function</span>(<span class="params">flag, res</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(okFlag)&#123;</span><br><span class="line">                <span class="built_in">window</span>.location.href=<span class="string">"mainpage"</span>;                            </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//로그인 실패</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;<span class="keyword">this</span>.handleSubmit&#125; &gt;</span><br><span class="line">        &lt;KikiDiv </span><br><span class="line">            ref=&#123;<span class="keyword">this</span>.child&#125; </span><br><span class="line">            appId=<span class="string">"app_NWMUorVo00000"</span> </span><br><span class="line">            appSecret=<span class="string">"3c640d9eee6cceba1e291e7ea834c6f027899aa38eb7b589134dd9fb8e9c10fd"</span></span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;label htmlFor=<span class="string">"username"</span>&gt;Enter username&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input id="username" name="username" type="text" onChange=&#123;(evt) =&gt; &#123; console.log(evt.target.value); this.state.userId=evt.target.value&#125;&#125;/</span>&gt;</span><br><span class="line">        &lt;label htmlFor=<span class="string">"passwd"</span>&gt;Enter passwd&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input id="passwd" name="passwd" type="text" /</span>&gt;</span><br><span class="line">        &lt;button&gt;Submit login&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> loginForm;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="참고-login-Request-Parameter"><a href="#참고-login-Request-Parameter" class="headerlink" title="[참고] login Request Parameter"></a>[참고] login Request Parameter</h4><table>
 <thead>
 <tr>
 <th>Parameter</th>
@@ -145,36 +187,20 @@
 </thead>
 <tbody>
 <tr>
-<td>loginCookie</td>
-<td>true</td>
+<td>userId</td>
+<td>“user001”</td>
 <td>Required</td>
-<td>로그인 페이지 호출 flag 값 <br>true=세션값이 있으면 로그인 페이지호출 안함 <br>false= 세션값 상관없이 로그인 페이지 호출 </td>
+<td>로그인을 할 사용자 id</td>
 </tr>
 <tr>
-<td>loginpage</td>
-<td>“./login”</td>
-<td>Required</td>
-<td>로그인 페이지를 호출할 때 이동될 로그인 url</td>
+<td>callback</td>
+<td>function(res){}</td>
+<td>optional</td>
+<td>로그인 이후 로그인성공 유무 확인을 위한 callback함수</td>
 </tr>
 </tbody>
 </table>
-<h4 id="React-샘플파일-다운로드"><a href="#React-샘플파일-다운로드" class="headerlink" title="* React 샘플파일 다운로드"></a>* React 샘플파일 <a href="http://gamekiki.com/data/react_sample.zip" target="_blank" rel="noopener">다운로드</a></h4><h2 id="로그인연동"><a href="#로그인연동" class="headerlink" title="로그인연동"></a>로그인연동</h2><hr>
-<blockquote>
-<p>사용자 로그인 정보는 KikiDiv 컴포넌트를 사용하거나 REST API를 직접 호출하는 것으로 연동할 수 있습니다.</p>
-</blockquote>
-<h3 id="KikiDiv-컴포넌트를-사용한-로그인-연동"><a href="#KikiDiv-컴포넌트를-사용한-로그인-연동" class="headerlink" title="KikiDiv 컴포넌트를 사용한 로그인 연동"></a>KikiDiv 컴포넌트를 사용한 로그인 연동</h3><ul>
-<li>아래의 순서에 따라 코드를 추가합니다.<ol>
-<li>kikiClass 파일을 다운로드 받은 후, 해당 압축파일 안에있는 react/kikidiv.js파일을 login처리를 하는 컴포넌트에 포함<ul>
-<li><code>kikiClass.zip</code> <a href="http://www.gamekiki.com/data/kikiClass.zip" target="_blank" rel="noopener">다운로드</a></li>
-</ul>
-</li>
-<li>kikiCallback을 설정하고 해당 함수에서 로그인 함수를 호출</li>
-<li>(Optional) 로그인 성공여부를 체크해서 성공 시 메인페이지로 이동<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> KikiDiv <span class="keyword">from</span> <span class="string">'./kikidiv.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Login</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.child = React.createRef();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    kikiCallback = <span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">        <span class="keyword">this</span>.child.current.login(&#123;</span><br><span class="line">            callback : <span class="function"><span class="keyword">function</span>(<span class="params">okFlag, res</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(okFlag)&#123;</span><br><span class="line">                    <span class="built_in">window</span>.location.href=<span class="string">"mainpage"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;   </span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h1&gt;main page&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">                &lt;KikiDiv </span></span><br><span class="line"><span class="regexp">                    ref=&#123;this.child&#125; </span></span><br><span class="line"><span class="regexp">                    appId="app_NWMUorVo00000" </span></span><br><span class="line"><span class="regexp">                    userId="test" </span></span><br><span class="line"><span class="regexp">                    appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"</span></span><br><span class="line"><span class="regexp">                    kikiCallback = &#123;this.kikiCallback&#125;</span></span><br><span class="line"><span class="regexp">                /</span>&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default mainpage;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-<h4 id="Login-Response"><a href="#Login-Response" class="headerlink" title="Login Response"></a>Login Response</h4><table>
+<h4 id="참고-login-Response"><a href="#참고-login-Response" class="headerlink" title="[참고] login Response"></a>[참고] login Response</h4><table>
 <thead>
 <tr>
 <th>Name</th>
@@ -195,53 +221,15 @@
 </tr>
 </tbody>
 </table>
-<h3 id="REST-API를-통한-로그인-연동"><a href="#REST-API를-통한-로그인-연동" class="headerlink" title="REST API를 통한 로그인 연동"></a>REST API를 통한 로그인 연동</h3><blockquote>
-<p>KikiDiv 컴포넌트를 사용하지 않고 REST API를 직접 호출해서 로그인 연동을 할 경우 login처리를 하는 컴포넌트에 아래와 같이 코드를 추가합니다.</p>
+<p><a name="restAPI"></a></p>
+<h3 id="REST-API-로그인-연동"><a href="#REST-API-로그인-연동" class="headerlink" title="REST API 로그인 연동"></a>REST API 로그인 연동</h3><blockquote>
+<p><code>KikiDiv.login</code> 함수를 사용하지 않고 <code>REST API</code>를 직접 호출해서 로그인 연동을 할 경우 아래와 같은 방법으로 연동합니다.</p>
 </blockquote>
-<ul>
-<li>login처리를 하는 컴포넌트에서 아래 <code>callKiKiLoginAPI()</code>를 호출<ol>
+<ol>
 <li><a href="http://docs.gamekiki.com/openapi/user/login.html">Login REST API</a> 를 참조해서 로그인 토큰 발급</li>
-<li>발급 받은 토큰을 split을 통해서 3등분 한 뒤에 토큰, appId, userId를 아래와 같은 방식으로 쿠키에 저장<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">callKiKiLoginAPI()&#123;</span><br><span class="line">    <span class="keyword">var</span> appId= <span class="string">"app_NWMUorVo00000"</span>;</span><br><span class="line">    <span class="keyword">var</span> appSecret=<span class="string">"3c640d9eee6cceba1e291e7ea834c6**********************************"</span>;</span><br><span class="line">    <span class="keyword">var</span> userId= <span class="string">"test"</span>;</span><br><span class="line"></span><br><span class="line">    fetch(<span class="string">"http://gamekiki.com:3000/login"</span>, </span><br><span class="line">    &#123;</span><br><span class="line">        method: <span class="string">'post'</span>,</span><br><span class="line">        body: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            <span class="string">'appId'</span>: appId,</span><br><span class="line">            <span class="string">'userId'</span>: userId,</span><br><span class="line">            <span class="string">'secretKey'</span>: appSecret</span><br><span class="line">        &#125;),</span><br><span class="line">        headers: &#123;<span class="string">'Content-Type'</span>:<span class="string">'application/json'</span>&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">results</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> results.json();  </span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(data.token)&#123;</span><br><span class="line">            <span class="keyword">var</span> tokenArry = (data.token).split(<span class="string">"."</span>);</span><br><span class="line">            <span class="keyword">var</span> expire = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">            expire.setTime(expire.getTime() + (<span class="number">1000</span>*<span class="number">3600</span>*<span class="number">24</span>));</span><br><span class="line"></span><br><span class="line">            <span class="built_in">document</span>.cookie = <span class="string">"kiki_wg_tk_fr"</span> + <span class="string">'='</span> + tokenArry[<span class="number">0</span>] + <span class="string">';'</span> + <span class="string">'path=/'</span> + <span class="string">';'</span>+<span class="string">'expires='</span> + expire.toUTCString();	</span><br><span class="line">            <span class="built_in">document</span>.cookie = <span class="string">"kiki_wg_tk_sc"</span> + <span class="string">'='</span> + tokenArry[<span class="number">1</span>] + <span class="string">';'</span> + <span class="string">'path=/'</span> + <span class="string">';'</span>+<span class="string">'expires='</span> + expire.toUTCString();	</span><br><span class="line">            <span class="built_in">document</span>.cookie = <span class="string">"kiki_wg_tk_tr"</span> + <span class="string">'='</span> + tokenArry[<span class="number">2</span>] + <span class="string">';'</span> + <span class="string">'path=/'</span> + <span class="string">';'</span>+<span class="string">'expires='</span> + expire.toUTCString();	</span><br><span class="line">            <span class="built_in">document</span>.cookie = <span class="string">"kiki_wg_pId"</span> + <span class="string">'='</span> + appId + <span class="string">';'</span> + <span class="string">'path=/'</span> + <span class="string">';'</span>+<span class="string">'expires='</span> + expire.toUTCString();	</span><br><span class="line">            <span class="built_in">document</span>.cookie = <span class="string">"kiki_wg_uId"</span> + <span class="string">'='</span> + userId + <span class="string">';'</span> + <span class="string">'path=/'</span> + <span class="string">';'</span>+<span class="string">'expires='</span> + expire.toUTCString();	</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>해당 토큰을 위젯을 사용하는 페이지에서 init함수를 토큰, 토큰과 매치되는 userId와 함께 호출<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.child.current.init(&#123;</span><br><span class="line">    loginPage : <span class="string">"./login"</span>,</span><br><span class="line">    userId : <span class="keyword">this</span>.state.userId,</span><br><span class="line">    token : <span class="keyword">this</span>.state.token</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>쿠키의 key값</th>
-<th>Example</th>
-<th>Description </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>kiki_wg_tk_fr</td>
-<td>eyJ0eXAiOiJKV1QiLCJ</td>
-<td>토큰을 “.”을 기준으로 나누었을 때 첫번째 인덱스의 값</td>
-</tr>
-<tr>
-<td>kiki_wg_tk_sc</td>
-<td>eyJhcHBJZCI6ImFwcF9wYU5pREfeee0xZjAw</td>
-<td>토큰을 “.”을 기준으로 나누었을 때 두번째 인덱스의 값</td>
-</tr>
-<tr>
-<td>kiki_wg_tk_tr</td>
-<td>uSRzQrCkQD-ZMxgLE</td>
-<td>토큰을 “.”을 기준으로 나누었을 때 세번째 인덱스의 값</td>
-</tr>
-<tr>
-<td>kiki_wg_pId</td>
-<td>“app_NWMUorVo00000”</td>
-<td>앱 id </td>
-</tr>
-<tr>
-<td>kiki_wg_uId</td>
-<td>“test”</td>
-<td>로그인 사용자 id</td>
-</tr>
-</tbody>
-</table>
 
         <div id="react-support-footer-root"></div>
       </div>
