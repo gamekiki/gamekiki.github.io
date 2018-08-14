@@ -39,6 +39,7 @@
 <li><a href="#위젯-코드-추가">위젯 코드 추가</a></li>
 <li><a href="#로그인연동">사용자 로그인 정보 연동</a></li>
 <li><a href="#로그아웃-연동">사용자 로그아웃 연동</a></li>
+<li><a href="#로그인확인">사용자 로그인 정보확인</a></li>
 </ol>
 </li>
 </ul>
@@ -86,11 +87,15 @@
 <h2 id="로그인연동"><a href="#로그인연동" class="headerlink" title="로그인연동"></a>로그인연동</h2><hr>
 <ul>
 <li>게임키키 위젯은 사용자의 ID별로 발급된 토큰을 기반으로 동작합니다. </li>
-<li>토큰 발급은 <a href="#restAPI">REST API</a>를 직접 호출하거나 개발환경 별로 제공하는 모듈을 사용하여 발급 할 수 있습니다.</li>
+<li>토큰 발급은 <a href="#restAPI"><code>REST API</code></a>를 직접 호출하거나 개발환경 별로 제공하는 모듈을 사용하여 발급 할 수 있습니다.</li>
 <li>위젯에서는 cookie에 저장된 토큰을 확인하게 되는데 cookie에 저장하는 방식은 아래 두가지 방법으로 할 수 있습니다.<ol>
 <li>키키위젯 라이브러리에서 제공하는 <a href="#saveUserInfo"><code>kshopMds.saveUserInfo</code> 함수 사용</a></li>
-<li>토큰 값을 안내된 형식으로 <a href="#direct">직접 cookie에 저장</a></li>
+<li>토큰 값을 안내된 형식으로 <a href="#direct">직접 <code>cookie</code>에 저장</a></li>
 </ol>
+</li>
+<li>위젯에서 로그인 여부(cookie에 저장된 토큰)를 확인 할 수 있습니다.<ul>
+<li><a href="#check">로그인 확인</a></li>
+</ul>
 </li>
 </ul>
 <p><a name="restAPI"></a></p>
@@ -142,6 +147,49 @@
 </tr>
 </tbody>
 </table>
+<p><a name="check"></a></p>
+<h3 id="로그인-확인"><a href="#로그인-확인" class="headerlink" title="로그인 확인"></a>로그인 확인</h3><ul>
+<li>키키위젯의 사용자 로그인 정보는 kwidget.js에 포함된 connMd의 함수들을 통해 확인하실 수 있습니다. </li>
+</ul>
+<p>connMd 모듈 </p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isAppId</td>
+<td>위젯에서 사용되고 있는 appId 존재 유무에 따라서 true, false 반환</td>
+</tr>
+<tr>
+<td>isUser</td>
+<td>위젯에서 사용되고 있는 사용자 id 존재 유무에 따라서 true, false 반환</td>
+</tr>
+<tr>
+<td>istoken</td>
+<td>위젯에서 사용되고 있는 로그인 토큰 존재 유무에 따라서 true, false 반환</td>
+</tr>
+<tr>
+<td>getAppId</td>
+<td>현재 브라우저에 저장되어 있는 위젯의 AppId 반환, 없다면 null 반환</td>
+</tr>
+<tr>
+<td>geUserId</td>
+<td>현재 브라우저에 저장되어 있는 위젯의 userId 반환, 없다면 null 반환</td>
+</tr>
+<tr>
+<td>getToken</td>
+<td>현재 브라우저에 저장되어 있는 위젯의 토큰 반환, 없다면 null 반환</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>실제 페이지에서 사용하는 예는 아래와 같습니다.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script charset=<span class="string">"UTF-8"</span> src=<span class="string">"http://gamekiki.com/kshop/kwidget/js/kwidget.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> userId,appId,token;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connMd.isUser())&#123;</span><br><span class="line">        userId = connMd.getUserId();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connMd.isAppId())&#123;</span><br><span class="line">        appId = connMd.getAppId();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(connMd.istoken())&#123;</span><br><span class="line">        token = connMd.getToken();</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="로그아웃-연동"><a href="#로그아웃-연동" class="headerlink" title="로그아웃 연동"></a>로그아웃 연동</h2><hr>
 <ul>
 <li>사용자 사이트에서 로그아웃 실행 시 게임키키 위젯 로그아웃이 동일하게 실행되어야만 위젯의 기존 사용자 정보 또한 삭제됩니다. </li>
