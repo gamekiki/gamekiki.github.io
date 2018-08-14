@@ -38,10 +38,11 @@
 <li>게임키키#을 사용하기 위해서는 아래와 같은 순서로 코딩 작업을 해 주셔야 합니다.<ol>
 <li><a href="#위젯-코드-추가">위젯 코드 추가</a></li>
 <li><a href="#로그인연동">사용자 로그인 정보 연동</a></li>
+<li><a href="#로그아웃연동">사용자 로그아웃 연동</a><h2 id="위젯-코드-추가"><a href="#위젯-코드-추가" class="headerlink" title="위젯 코드 추가"></a>위젯 코드 추가</h2></li>
 </ol>
 </li>
 </ul>
-<h2 id="위젯-코드-추가"><a href="#위젯-코드-추가" class="headerlink" title="위젯 코드 추가"></a>위젯 코드 추가</h2><hr>
+<hr>
 <h4 id="먼저-앱을-등록합니다"><a href="#먼저-앱을-등록합니다" class="headerlink" title="먼저 앱을 등록합니다."></a>먼저 앱을 등록합니다.</h4><ol>
 <li><a href="http://www.gamekiki.com" target="_blank" rel="noopener">게임키키#</a> 사이트에서 새로운 앱을 생성합니다. <ul>
 <li>앱 만들기 <a href="http://www.gamekiki.com/front/myapp_write.php" target="_blank" rel="noopener">http://www.gamekiki.com/front/myapp_write.php</a></li>
@@ -75,10 +76,10 @@
 </li>
 </ul>
 </li>
-<li><p>사이트 사용자의 쿠키 만료기간을 체크합니다.</p>
+<li><p>로그인 url에서 로그인한 사용자의 쿠키 만료기간을 체크합니다.</p>
 <ul>
 <li>사이트 사용자의 쿠키 세션이 만료된 경우, 키키위젯의 세션 또한 만료시켜야 합니다. </li>
-<li><code>init</code> 코드에 <code>autoLogin</code> 값을 ‘N’으로 넣으면 키키위젯의 세션이 만료됩니다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br><span class="line">    &lt;script charset=<span class="string">"utf-8"</span> src=<span class="string">"http://gamekiki.com/kshop/kwidget/js/kwidget.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        <span class="comment">// 서버사이드 사용자 쿠키 정보</span></span><br><span class="line">        <span class="keyword">var</span> user_session_cookie = <span class="string">"&lt;?=$_COOKIE["</span>userLoginSession<span class="string">"]?&gt;"</span>;</span><br><span class="line">        <span class="keyword">var</span> autoLogin= (user_session_cookie)? <span class="string">"Y"</span> : <span class="string">"N"</span>;</span><br><span class="line">        </span><br><span class="line">        kshopMds.loginPage = <span class="string">"./login.html"</span>; </span><br><span class="line">        <span class="keyword">var</span> appId=<span class="string">"app_NWMUorVo00000"</span>;</span><br><span class="line">        kshopMds.init(&#123;</span><br><span class="line">            appId : appId,</span><br><span class="line">            userId : <span class="string">"test01"</span>,</span><br><span class="line">            autoLogin : autoLogin</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+<li><code>init</code> 코드에 <code>autoLogin</code> 값을 ‘N’으로 넣으면 키키위젯의 세션이 만료됩니다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"utf-8"</span> /&gt;</span><br><span class="line">    &lt;script charset=<span class="string">"utf-8"</span> src=<span class="string">"http://gamekiki.com/kshop/kwidget/js/kwidget.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        <span class="comment">// redirect된 로그인 페이지에서 설정한 유저의 로그인 쿠키 체크.</span></span><br><span class="line">        <span class="comment">// 사이트에서 사용자가 로그인 했을 시 true, 로그인 정보가 없다면 false로 설정</span></span><br><span class="line">        <span class="keyword">var</span> user_session_cookie = <span class="string">"&lt;?=$_COOKIE['userLoginSession']?&gt;"</span>;</span><br><span class="line">        <span class="keyword">var</span> autoLogin= (user_session_cookie)? <span class="string">"Y"</span> : <span class="string">"N"</span>;</span><br><span class="line">        </span><br><span class="line">        kshopMds.loginPage = <span class="string">"./login.html"</span>; </span><br><span class="line">        <span class="keyword">var</span> appId=<span class="string">"app_NWMUorVo00000"</span>;</span><br><span class="line">        kshopMds.init(&#123;</span><br><span class="line">            appId : appId,</span><br><span class="line">            userId : <span class="string">"test01"</span>,</span><br><span class="line">            autoLogin : autoLogin</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -106,9 +107,39 @@
 </ul>
 </li>
 <li><p>위젯을 실행하기 위해서 <a href="#위젯-코드-추가">위젯 코드 추가</a>를 설정한 페이지로 이동합니다.</p>
- <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">"kikiClass.php"</span>);</span><br><span class="line"></span><br><span class="line">    $appId=<span class="string">"app_NWMUorVo00000"</span>;</span><br><span class="line">    $appSecret =<span class="string">"3c640d9eee6cceba1e291e7ea834c6**********************************"</span>;</span><br><span class="line">    $userId=<span class="string">"test00"</span>;</span><br><span class="line"></span><br><span class="line">    $kiki = <span class="keyword">new</span> kikiClass();</span><br><span class="line">    $msg = $kiki-&gt;login($appId,$userId,$appSecret);</span><br><span class="line">    <span class="keyword">if</span>($msg[<span class="string">"prog"</span>] == <span class="keyword">false</span>)&#123;</span><br><span class="line">        <span class="comment">// 로그인 실패</span></span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">"login fail : "</span>.$msg[<span class="string">"message"</span>]);  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// 로그인 성공</span></span><br><span class="line">        header(<span class="string">"Location: main.php"</span>);   </span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">"kikiClass.php"</span>);</span><br><span class="line"></span><br><span class="line">    $appId=<span class="string">"app_NWMUorVo00000"</span>;</span><br><span class="line">    $appSecret =<span class="string">"3c640d9eee6cceba1e291e7ea834c6**********************************"</span>;</span><br><span class="line">    $userId=<span class="string">"test00"</span>;</span><br><span class="line"></span><br><span class="line">    $kiki = <span class="keyword">new</span> kikiClass();</span><br><span class="line">    $msg = $kiki-&gt;login($appId,$userId,$appSecret);</span><br><span class="line">    <span class="keyword">if</span>($msg[<span class="string">"prog"</span>] == <span class="keyword">false</span>)&#123;</span><br><span class="line">        <span class="comment">// 로그인 실패</span></span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">"login fail : "</span>.$msg[<span class="string">"message"</span>]);  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// 로그인 성공</span></span><br><span class="line">       `header(<span class="string">"Location: main.php"</span>);`</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h2 id="로그아웃-연동"><a href="#로그아웃-연동" class="headerlink" title="로그아웃 연동"></a>로그아웃 연동</h2><p>사용자 사이트에서 로그아웃 실행 시 위젯 로그아웃이 동일하게 실행되어야만 위젯의 기존 사용자 정보 또한 삭제됩니다.<br>로그아웃은 아래와 같이 실행시키시면 됩니다 </p>
+<h3 id="키키위젯에서-제공하는-함수를-사용한-로그아웃"><a href="#키키위젯에서-제공하는-함수를-사용한-로그아웃" class="headerlink" title="키키위젯에서 제공하는 함수를 사용한 로그아웃"></a>키키위젯에서 제공하는 함수를 사용한 로그아웃</h3><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><pre><code><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">"kikiClass.php"</span>);</span><br><span class="line">      $kiki = <span class="keyword">new</span> kikiClass();</span><br><span class="line">      $kiki-&gt;logout();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script charset=<span class="string">"UTF-8"</span> src=<span class="string">"http://gamekiki.com/kshop/kwidget/js/kwidget.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    kshopMds.logout();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="직접-쿠키-삭제"><a href="#직접-쿠키-삭제" class="headerlink" title="직접 쿠키 삭제"></a>직접 쿠키 삭제</h3><p>로그인 시 설정했던 쿠키들을 삭제해주시면 로그아웃이 됩니다</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kiki_wg_pId</td>
+<td>“app_NM00001”</td>
+<td>어플리케이션 id </td>
+</tr>
+<tr>
+<td>kiki_wg_uId</td>
+<td>“user001”</td>
+<td>사용자의 userId </td>
+</tr>
+<tr>
+<td>kiki_wg_whole_tk</td>
+<td>“eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9”</td>
+<td>서버로부터 얻은 토큰 값 </td>
+</tr>
+</tbody>
+</table>
 
         <div id="react-support-footer-root"></div>
       </div>

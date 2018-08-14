@@ -230,6 +230,37 @@
 <li>해당 토큰을 위젯을 사용하는 페이지에서 init함수를 토큰, 토큰과 매치되는 userId와 함께 호출<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.child.current.init(&#123;</span><br><span class="line">    loginPage : <span class="string">"./login"</span>,</span><br><span class="line">    userId : <span class="keyword">this</span>.state.userId,</span><br><span class="line">    token : <span class="keyword">this</span>.state.token</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<h2 id="로그아웃-연동"><a href="#로그아웃-연동" class="headerlink" title="로그아웃 연동"></a>로그아웃 연동</h2><p>사용자 사이트에서 로그아웃 실행 시 위젯 로그아웃이 동일하게 실행되어야만 위젯의 기존 사용자 정보 또한 삭제됩니다.<br>로그아웃은 아래와 같이 실행시키시면 됩니다 </p>
+<h3 id="키키위젯에서-제공하는-함수를-사용한-로그아웃"><a href="#키키위젯에서-제공하는-함수를-사용한-로그아웃" class="headerlink" title="키키위젯에서 제공하는 함수를 사용한 로그아웃"></a>키키위젯에서 제공하는 함수를 사용한 로그아웃</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script charset=<span class="string">"UTF-8"</span> src=<span class="string">"http://gamekiki.com/kshop/kwidget/js/kwidget.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    kshopMds.logout();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="직접-쿠키-삭제"><a href="#직접-쿠키-삭제" class="headerlink" title="직접 쿠키 삭제"></a>직접 쿠키 삭제</h3><ol>
+<li>로그인 시 설정했던 쿠키들을 삭제해주시면 로그아웃이 됩니다</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kiki_wg_pId</td>
+<td>“app_NM00001”</td>
+<td>어플리케이션 id </td>
+</tr>
+<tr>
+<td>kiki_wg_uId</td>
+<td>“user001”</td>
+<td>사용자의 userId </td>
+</tr>
+<tr>
+<td>kiki_wg_whole_tk</td>
+<td>“eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9”</td>
+<td>서버로부터 얻은 토큰 값 </td>
+</tr>
+</tbody>
+</table>
 
         <div id="react-support-footer-root"></div>
       </div>
