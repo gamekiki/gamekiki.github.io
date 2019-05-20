@@ -1,0 +1,252 @@
+---
+title: Plugin - React
+---
+
+# React
+---
+
+React 사용자 가이드입니다.
+
+- 게임키키#을 사용하기 위해서는 아래와 같은 순서로 코딩 작업을 해 주셔야 합니다.
+    1. [위젯 코드 추가](#위젯-코드-추가)
+    1. [사용자 로그인 정보 연동](#로그인연동)
+
+## 위젯 코드 추가
+---
+
+#### 먼저 앱을 등록합니다.
+
+1. [게임키키#](http://www.gamekiki.com) 사이트에서 새로운 앱을 생성합니다. 
+    * 앱 만들기 <http://www.gamekiki.com/front/myapp_write.php>
+1. 생성된 앱의 `appId(Application ID)` 와 `appSecret(Application Secretkey)`을 메모합니다.
+    - <https://www.gamekiki.com/cms/start.php>
+    > ![](http://gamekiki.com/metaadmin/assets/data/manual/section_1_1.png)
+1. 찬스게임 사용을 원하시는 경우에는 찬스게임 등록 페이지를 참조하시기 바랍니다. 
+    - 찬스게임 등록 <http://www.gamekiki.com/front/#step1>
+
+#### 다음으로 위젯을 실행시킬 컴포넌트에 게임키키# `KikiDiv` 컴포넌트를 `import` 시킵니다.
+
+1. 위젯을 실행시킬 컴포넌트에 `KikiDiv` 컴포넌트를 `import` 합니다.
+    - `kikiClass` 파일을 다운로드 받은 후, 해당 압축파일 안에있는 `react/kikidiv.js`파일을 위젯을 실행시킬 컴포넌트에 `import`
+        - `kikiClass.zip` [다운로드](http://www.gamekiki.com/data/kikiClass.zip)
+```javascript
+import React from 'react';
+import KikiDiv from './kikidiv.js';
+
+class Main extends React.Component {    
+    render() {   
+        return (
+          <div>
+            <h1>main page</h1>
+          </div>
+        )
+    }
+}
+export default mainpage;
+```
+1. `KikiDiv`를 사용하여 아래와 같이 코드를 추가하여 줍니다.
+    1. `constructor()`에 `KikiDiv`를 참조할 참조변수를 생성
+    1. `render()`에 `KikiDiv`와 `attribute` 설정
+    1. `KikiDiv`에서 호출하는 `kikiCallback()` 작성
+    1. `kikiCallback()`에서 `KikiDiv.init` 함수를 로그인페이지 파라미터와 함께 호출
+        * 로그인이 되어있다면 위젯 클릭 시 위젯이 정상적으로 작동
+        * 로그인이 되어있지 않다면 위젯 클릭 시 로그인 페이지로 이동
+        * 로그인 페이지 설정은 [로그인연동](#로그인연동) 참고
+```javascript
+import React from 'react';
+import KikiDiv from './kikidiv.js';
+
+class Main extends React.Component {
+    constructor() {
+        super();
+        this.child = React.createRef();
+    }
+
+    kikiCallback = () => {  
+        var loginPage = "./login";  
+        this.child.current.init(true,loginPage);
+    }
+
+    render() {   
+        return (
+          <div>
+            <h1>main page</h1>
+            <KikiDiv 
+                ref={this.child} 
+                appId="app_NWMUorVo00000" 
+                userId="test" 
+                appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"
+                kikiCallback = {this.kikiCallback}
+            />
+          </div>
+        )
+    }
+}
+export default mainpage;
+```
+1. 사이트 사용자의 세션 만료기간을 체크합니다.
+    - 사이트 사용자의 로그인 세션과 키키 위젯 로그인 세션의 동기화를 위해서 사용자의 세션이 유지되는지 체크
+    - 사용자 세션이 종료되었다면 키키위젯의 세션 또한 종료
+    - 키키위젯의 세션을 종료하려면 `init`의 `loginCookie` 파라미터를 `false`로 설정하면 됩니다.
+```javascript
+import React from 'react';
+import KikiDiv from './kikidiv.js';
+
+class Main extends React.Component {
+    constructor() {
+        super();
+        this.child = React.createRef();
+    }
+
+    kikiCallback = () => {  
+        var loginPage = "./login";  
+        //서버에서 사용자의 로그인 세션값 
+        var loginSession = svrLoginSession;
+        this.child.current.init(loginSession,loginPage);
+    }
+
+    render() {   
+        return (
+          <div>
+            <h1>main page</h1>
+            <KikiDiv 
+                ref={this.child} 
+                appId="app_NWMUorVo00000" 
+                userId="test" 
+                appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"
+                kikiCallback = {this.kikiCallback}
+            />
+          </div>
+        )
+    }
+}
+export default mainpage;
+```
+
+#### KikiDiv 컴포넌트 Attributes 
+
+Parameter | Example | Required | Description 
+--- | --- | --- | --- 
+ref | {this.child} | Required | 콜백함수 호출을 위한 참조변수
+appId | "app_NWMUorVo00000" | Required | 어플리케이션 id 
+appSecret | "3c640d9eee6cceba1e291e7ea834c6**********************************" | Required | app secret
+userId | "test" | Required | 사용자의 id 
+kikiCallback | {this.kikiCallback} | Required | 컴포넌트 생성 이후 실행되는 callback
+
+#### KikiDiv init 함수 파라미터
+
+Parameter | Example | Required | Description 
+--- | --- | --- | --- 
+loginCookie | true | Required | 로그인 페이지 호출 flag 값 <br>true=세션값이 있으면 로그인 페이지호출 안함 <br>false= 세션값 상관없이 로그인 페이지 호출 
+loginpage | "./login" | Required | 로그인 페이지를 호출할 때 이동될 로그인 url
+
+#### * React 샘플파일 [다운로드](http://gamekiki.com/data/react_sample.zip)
+
+## 로그인연동
+---
+
+> 사용자 로그인 정보는 KikiDiv 컴포넌트를 사용하거나 REST API를 직접 호출하는 것으로 연동할 수 있습니다.
+
+### KikiDiv 컴포넌트를 사용한 로그인 연동
+
+- 아래의 순서에 따라 코드를 추가합니다.
+    1. kikiClass 파일을 다운로드 받은 후, 해당 압축파일 안에있는 react/kikidiv.js파일을 login처리를 하는 컴포넌트에 포함
+        - `kikiClass.zip` [다운로드](http://www.gamekiki.com/data/kikiClass.zip)
+    1. kikiCallback을 설정하고 해당 함수에서 로그인 함수를 호출
+    1. (Optional) 로그인 성공여부를 체크해서 성공 시 메인페이지로 이동
+    ```javascript
+    import React from 'react';
+    import KikiDiv from './kikidiv.js';
+
+    class Login extends React.Component {
+        constructor() {
+            super();
+            this.child = React.createRef();
+        }
+
+        kikiCallback = () => {  
+            this.child.current.login({
+                callback : function(okFlag, res){
+                    if(okFlag){
+                        window.location.href="mainpage";
+                    }
+                }
+            });
+        }
+
+        render() {   
+            return (
+                <div>
+                    <h1>main page</h1>
+                    <KikiDiv 
+                        ref={this.child} 
+                        appId="app_NWMUorVo00000" 
+                        userId="test" 
+                        appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************"
+                        kikiCallback = {this.kikiCallback}
+                    />
+                </div>
+            );
+        }
+    }
+    export default mainpage;
+    ```
+
+#### Login Response
+
+Name | Type | Description 
+--- | --- | ---  
+okFlag | boolean |  로그인 성공여부 <br>true=로그인 성공 <br>false= 로그인 실패
+res | object | 로그인 호출이후 키키서버로부터 받은 response 값
+
+
+### REST API를 통한 로그인 연동
+
+> KikiDiv 컴포넌트를 사용하지 않고 REST API를 직접 호출해서 로그인 연동을 할 경우 login처리를 하는 컴포넌트에 아래와 같이 코드를 추가합니다.
+
+- login처리를 하는 컴포넌트에서 아래 `callKiKiLoginAPI()`를 호출
+    1. [Login REST API](http://docs.gamekiki.com/openapi/user/login.html) 를 참조해서 로그인 토큰 발급
+    1. 발급 받은 토큰을 split을 통해서 3등분 한 뒤에 토큰, appId, userId를 아래와 같은 방식으로 쿠키에 저장
+```javascript
+callKiKiLoginAPI(){
+    var appId= "app_NWMUorVo00000";
+    var appSecret="3c640d9eee6cceba1e291e7ea834c6**********************************";
+    var userId= "test";
+
+    fetch("http://gamekiki.com:3000/login", 
+    {
+        method: 'post',
+        body: JSON.stringify({
+            'appId': appId,
+            'userId': userId,
+            'secretKey': appSecret
+        }),
+        headers: {'Content-Type':'application/json'}
+    })
+    .then(results=>{
+        return results.json();  
+    })
+    .then(data=>{
+        if(data.token){
+            var tokenArry = (data.token).split(".");
+            var expire = new Date();
+            expire.setTime(expire.getTime() + (1000*3600*24));
+
+            document.cookie = "kiki_wg_tk_fr" + '=' + tokenArry[0] + ';' + 'path=/' + ';'+'expires=' + expire.toUTCString();	
+            document.cookie = "kiki_wg_tk_sc" + '=' + tokenArry[1] + ';' + 'path=/' + ';'+'expires=' + expire.toUTCString();	
+            document.cookie = "kiki_wg_tk_tr" + '=' + tokenArry[2] + ';' + 'path=/' + ';'+'expires=' + expire.toUTCString();	
+            document.cookie = "kiki_wg_pId" + '=' + appId + ';' + 'path=/' + ';'+'expires=' + expire.toUTCString();	
+            document.cookie = "kiki_wg_uId" + '=' + userId + ';' + 'path=/' + ';'+'expires=' + expire.toUTCString();	
+        }
+    });
+}
+```
+
+쿠키의 key값 | Example | Description 
+--- | --- | ---  
+kiki_wg_tk_fr | eyJ0eXAiOiJKV1QiLCJ | 토큰을 "."을 기준으로 나누었을 때 첫번째 인덱스의 값
+kiki_wg_tk_sc | eyJhcHBJZCI6ImFwcF9wYU5pREfeee0xZjAw | 토큰을 "."을 기준으로 나누었을 때 두번째 인덱스의 값
+kiki_wg_tk_tr | uSRzQrCkQD-ZMxgLE | 토큰을 "."을 기준으로 나누었을 때 세번째 인덱스의 값
+kiki_wg_pId | "app_NWMUorVo00000" | 앱 id 
+kiki_wg_uId | "test" | 로그인 사용자 id
+
