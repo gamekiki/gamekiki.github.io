@@ -134,6 +134,8 @@
 </tbody>
 </table>
 <ul>
+<li><p>mgId(게임ID)값은 CMS 찬스게임에서 확인 가능합니다.</p>
+</li>
 <li><p>위드소프트 이벤트의 경우 기본적으로 아래와 같이 mgId값이 설정됩니다.</p>
 <ul>
 <li>{$mall_id}_01 : 룰렛</li>
@@ -144,7 +146,7 @@
 </li>
 </ul>
 </li>
-<li><p>찬스게임이 정상적으로 실행이 되지 않는 경우 콜백함수에 status값을 통해 확인할 수 있습니다.</p>
+<li><p>찬스게임이 정상적으로 실행이 되지 않는 경우 콜백함수에 status값을 통해 확인할 수 있습니다. errorCode: 422 발생 시 로그인 페이지가 설정되어 있을 경우 로그인 페이지로 이동됩니다.</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">   gamekiki.openBannerGame(&#123;</span></span><br><span class="line"><span class="javascript">      mgId : <span class="string">"MGMAI_y588M4x6"</span>,</span></span><br><span class="line"><span class="javascript">      callback : <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">         <span class="keyword">if</span>(res.status == <span class="string">"error"</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"error"</span>, res.errorCode);</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="javascript">         <span class="keyword">if</span>(res.status == <span class="string">"played"</span>)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"error"</span>, res.errorCode);</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">   &#125;);</span></span><br><span class="line"><span class="undefined"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>배너위젯 status코드</p>
@@ -201,7 +203,7 @@
 </tr>
 <tr>
 <td>422</td>
-<td>필수파라미터 값 누락, 브라우저의 쿠키에 저장된 userId, appId 혹은 token을 찾을 수 없음, 혹은 mgId를 넘겨받지 못함</td>
+<td>필수파라미터 값 누락 또는 브라우저의 쿠키에 저장된 userId, appId 혹은 token을 찾을 수 없음, 혹은 mgId를 넘겨받지 못함</td>
 </tr>
 </tbody>
 </table>
